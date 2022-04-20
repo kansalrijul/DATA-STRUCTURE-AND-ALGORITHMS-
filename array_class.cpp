@@ -1,77 +1,72 @@
 // this array helps us to create an array  in heap so its will not use stack memory
-
+// rijul kansal
+// Btech computer science student at vit vellore
 #include <bits/stdc++.h>
 using namespace std;
 
-
-void swap(int *x, int *y)
+template <class t>
+void swap(t *x, t *y)
 {
-    int temp;
+    t temp;
     temp = *x;
     *x = *y;
     *y = temp;
 }
 
-
+template <class T = int>
 class Array
 {
 
-    int *arr;
-    /* it will create an array of max size 
-    like in vector we can inc the no of element here also we can inc the no of element */
+    T *arr;
     int max_size;
-    // total no of elements in array we are going to give 
     int length;
 
 public:
-    //set_size helps us to create the max size of any array in heap
+    ~Array()
+    {delete[] arr;}
     void set_size();
-    //  no_of_elements will help us to initilize the size of an array 
     void no_of_element();
-    // create fn will helps us to create an array of no_of_elements elements 
     void create();
-    // display fn will display all the elements 
     void display();
-    // append methon is used to append any integer 
-    void append(int);
-    void insert(int, int);
-    int Delete(int);
-    int linear_search(int);
-    int linear_search_transpose(int);
-    int linear_search_move(int);
-    int binary_search(int);
-    int binary_search_recursion(int, int, int, int);
-    int get(int);
-    void set(int, int);
-    int max();
-    int min();
-    int sum();
+    void append(T);
+    void insert(int, T);
+    T Delete(int);
+    T linear_search(T);
+    T linear_search_transpose(T);
+    T linear_search_move(T);
+    T binary_search(T);
+    T binary_search_recursion(T, int, int, T);
+    T get(T);
+    void set(int, T);
+    T max();
+    T min();
+    T sum();
     double avg();
     void reverse_aux();
     void reverse_swap();
-    void insert_sorted(int x);
-    int is_sorted();
+    void insert_sorted(T);
+    T is_sorted();
     void rearrange();
 };
-
-void Array ::no_of_element()
+template <class T>
+void Array<T>::no_of_element()
 {
     cout << "enter no of element ";
     cin >> length;
-    cout<<endl;
+    cout << endl;
 }
-
-void Array ::set_size()
+template <class T>
+void Array<T>::set_size()
 {
     cout << "enter the max size ";
     cin >> max_size;
-    cout<<endl;
+    cout << endl;
 }
-
-void Array ::create()
+template <class T>
+void Array<T>::create()
 {
     no_of_element();
-    arr = new int[max_size];
+    arr = new T[max_size];
     cout << "entering all elemnts ";
     for (int i = 0; i < length; i++)
     {
@@ -79,8 +74,8 @@ void Array ::create()
     }
     cout << endl;
 }
-
-void Array ::display()
+template <class T>
+void Array<T>::display()
 {
     cout << "printing all elements " << endl;
     cout << "[";
@@ -90,15 +85,15 @@ void Array ::display()
     }
     cout << "]" << endl;
 }
-
-void Array ::append(int x)
+template <class T>
+void Array<T>::append(T x)
 {
     if (length < max_size)
         arr[length] = x;
     length++;
 }
-
-void Array ::insert(int index, int x)
+template <class T>
+void Array<T>::insert(int index, T x)
 {
     if (index >= 0 && index <= length)
     {
@@ -110,11 +105,11 @@ void Array ::insert(int index, int x)
         length++;
     }
 }
-
-int Array ::Delete(int index)
+template <class T>
+T Array<T>::Delete(int index)
 {
-    cout<<endl;
-    int x = 0;
+    cout << endl;
+    T x = 0;
     if (index >= 0 && index <= length)
     {
         x = arr[index];
@@ -126,7 +121,8 @@ int Array ::Delete(int index)
     }
     return x;
 }
-int Array ::linear_search(int key)
+template <class T>
+T Array<T>::linear_search(T key)
 {
     cout << endl;
     for (int i = 0; i < length; i++)
@@ -136,10 +132,10 @@ int Array ::linear_search(int key)
             return i;
         }
     }
-    return -1;  
+    return -1;
 }
-
-int Array ::linear_search_transpose(int key)
+template <class T>
+T Array<T>::linear_search_transpose(T key)
 {
     cout << endl;
     for (int i = 0; i < length; i++)
@@ -152,7 +148,8 @@ int Array ::linear_search_transpose(int key)
     }
     return -1;
 }
-int Array ::linear_search_move(int key)
+template <class T>
+T Array<T>::linear_search_move(T key)
 {
     cout << endl;
     for (int i = 0; i < length; i++)
@@ -165,8 +162,8 @@ int Array ::linear_search_move(int key)
     }
     return -1;
 }
-
-int Array ::binary_search(int x)
+template <class T>
+T Array<T>::binary_search(T x)
 {
     cout << endl;
     int l, h, mid;
@@ -187,8 +184,8 @@ int Array ::binary_search(int x)
     }
     return -1;
 }
-
-int binary_search_recursion(int arr1[], int l, int h, int key)
+template <class T>
+T binary_search_recursion(T arr1[], int l, int h, T key)
 {
     cout << endl;
     int mid;
@@ -205,8 +202,8 @@ int binary_search_recursion(int arr1[], int l, int h, int key)
             return binary_search_recursion(arr1, mid + 1, h, key);
     }
 }
-
-int Array ::get(int x)
+template <class T>
+T Array<T>::get(T x)
 {
     cout << endl;
     if (x >= 0 && x <= length)
@@ -215,18 +212,19 @@ int Array ::get(int x)
     }
     return -1;
 }
-void Array ::set(int x, int y)
+template <class T>
+void Array<T>::set(int x, T y)
 {
     if (x >= 0 && x <= length)
     {
         arr[x] = y;
     }
 }
-
-int Array ::max()
+template <class T>
+T Array<T>::max()
 {
     cout << endl;
-    int maxx = arr[0];
+    T maxx = arr[0];
     for (int i = 1; i < length; i++)
     {
         if (arr[i] > maxx)
@@ -236,10 +234,11 @@ int Array ::max()
     }
     return maxx;
 }
-int Array ::min()
+template <class T>
+T Array<T>::min()
 {
     cout << endl;
-    int maxx = arr[0];
+    T maxx = arr[0];
     for (int i = 1; i < length; i++)
     {
         if (arr[i] < maxx)
@@ -249,31 +248,33 @@ int Array ::min()
     }
     return maxx;
 }
-
-int Array ::sum()
+template <class T>
+T Array<T>::sum()
 {
     cout << endl;
-    int s = 0;
+    T s = 0;
     for (int i = 0; i < length; i++)
     {
         s = s + arr[i];
     }
     return s;
 }
-double Array ::avg()
+template <class T>
+double Array<T>::avg()
 {
     cout << endl;
-    int s = 0;
+    T s = 0;
     for (int i = 0; i < length; i++)
     {
         s = s + arr[i];
     }
     return static_cast<double>(s) / length;
 }
-void Array ::reverse_aux()
+template <class T>
+void Array<T>::reverse_aux()
 {
-    int *b;
-    b = new int[length];
+    T *b;
+    b = new T[length];
     for (int i = 0; i < length; i++)
     {
         b[i] = arr[length - 1 - i];
@@ -283,14 +284,16 @@ void Array ::reverse_aux()
         arr[i] = b[i];
     }
 }
-void Array ::reverse_swap()
+template <class T>
+void Array<T>::reverse_swap()
 {
     for (int i = 0; i < length; i++)
     {
         swap(arr[i], arr[length - 1 - i]);
     }
 }
-void Array ::insert_sorted(int x)
+template <class T>
+void Array<T>::insert_sorted(T x)
 {
     if (length < max_size)
     {
@@ -304,8 +307,8 @@ void Array ::insert_sorted(int x)
         length++;
     }
 }
-
-int Array ::is_sorted()
+template <class T>
+T Array<T>::is_sorted()
 {
     cout << endl;
     int count = 0;
@@ -316,8 +319,8 @@ int Array ::is_sorted()
     }
     return 1;
 }
-
-void Array ::rearrange()
+template <class T>
+void Array<T>::rearrange()
 {
     int i = 0;
     int j = length - 1;
@@ -331,75 +334,11 @@ void Array ::rearrange()
             swap(arr[i], arr[j]);
     }
 }
-
-void merge(int arr1[],int arr2[],int x,int y)
-{
-    int *arr3;
-    arr3=new int[x+y];
-    
-    
-}
-
 int main()
 {
-    class Array a;
-
+    class Array<int> a;
     a.set_size();
     a.create();
     a.display();
-
-    // a.append(11);
-    // a.display();
-
-    // a.insert(3,22);
-    // a.display();
-
-    // a.Delete(2);
-    // a.display();
-
-    // int ls=a.linear_search(5);
-    // cout<<ls<<endl;
-    // int lst=a.linear_search_transpose(19);
-    // cout<<lst<<endl;
-    // int lsm=a.linear_search_move(5);
-    // cout<<lsm<<endl;
-
-    // int bs=a.binary_search(2);
-    // cout<<bs<<endl;
-
-    // int array[5] {2,3,4,5,6};
-    // int bsr=binary_search_recursion(array, 0,5,2);
-    // cout<<bsr<<endl;
-
-    // int gt=a.get(2);
-    // cout<<gt<<endl;
-
-    // a.set(2,1000);
-    // a.display();
-
-    // int mx=a.max();
-    // int mi=a.min();
-    // cout<<mx<<endl;
-    // cout<<mi<<endl;
-
-    // int sm=a.sum();
-    // double ag=a.avg();
-    // cout<<sm<<" "<<ag<<endl;
-
-    // a.reverse_aux();
-    // a.display();
-
-    // a.reverse_swap();
-    // a.display();
-
-    // a.insert_sorted(44);
-    // a.display();
-
-    // bool aa=a.is_sorted();
-    // cout<<aa<<endl;
-
-    // a.rearrange();
-    a.display();
-
     return 0;
 }
