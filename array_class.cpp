@@ -1,5 +1,8 @@
+// this array helps us to create an array  in heap so its will not use stack memory
+
 #include <bits/stdc++.h>
 using namespace std;
+
 
 void swap(int *x, int *y)
 {
@@ -8,19 +11,28 @@ void swap(int *x, int *y)
     *x = *y;
     *y = temp;
 }
+
+
 class Array
 {
-    // this array helps us to create an array  in heap so its will not use stack memory
+
     int *arr;
-    // it will create an array of max size 
+    /* it will create an array of max size 
+    like in vector we can inc the no of element here also we can inc the no of element */
     int max_size;
+    // total no of elements in array we are going to give 
     int length;
 
 public:
+    //set_size helps us to create the max size of any array in heap
     void set_size();
+    //  no_of_elements will help us to initilize the size of an array 
     void no_of_element();
+    // create fn will helps us to create an array of no_of_elements elements 
     void create();
+    // display fn will display all the elements 
     void display();
+    // append methon is used to append any integer 
     void append(int);
     void insert(int, int);
     int Delete(int);
